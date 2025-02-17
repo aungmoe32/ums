@@ -1,0 +1,18 @@
+{
+    "name": "aungmoemyintthu/ums",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "Http\\": "http/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aung Moe Myint Thu",
+            "email": "aungmoemyintthu@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^2.43"
+    }
+}
