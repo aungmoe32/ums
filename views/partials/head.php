@@ -19,6 +19,7 @@
     <style type="text/tailwindcss">
 
         @theme {
+       
     /* Light Theme */
     --color-surface: var(--color-white);
     --color-surface-alt: var(--color-emerald-50);
@@ -69,6 +70,13 @@ h5 {
 body {
     font-family:  var(--font-poppins);
 }
+
+
+@layer utilities {
+        .h10 {
+            @apply py-4 font-bold text-white text-4xl;
+        }
+    }
 </style>
 
 </head>
@@ -139,10 +147,10 @@ body {
 
                     <ul x-cloak x-collapse x-show="isExpanded" aria-labelledby="user-management-btn" id="user-management">
                         <li class="px-1 py-0.5 first:mt-2">
-                            <a href="/" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Role List</a>
+                            <a href="/roles" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Role List</a>
                         </li>
                         <li class="px-1 py-0.5 first:mt-2">
-                            <a href="#" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Create Role</a>
+                            <a href="/roles/create" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Create Role</a>
                         </li>
                     </ul>
                 </div>

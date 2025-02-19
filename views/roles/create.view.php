@@ -1,0 +1,83 @@
+<?php require BASE_PATH . 'views/partials/head.php' ?>
+
+
+<div class="container flex flex-col">
+
+    <h1 class="h10"><?= $heading ?></h1>
+
+
+    <form action="http://ums.test/roles" method="POST">
+        <div class="form-group">
+            <div class="flex w-full max-w-xs flex-col gap-1 text-neutral-800 dark:text-neutral-300">
+                <label for="textInputDefault" class="w-fit pl-0.5 text-sm">Role Name</label>
+                <input id="textInputDefault" required type="text" name="role" value="<?= old('name') ?>" class="w-full rounded-xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400" name="name" placeholder="Enter your name" autocomplete="name" />
+            </div>
+
+            <small class="text-danger"><?= $errors['name'] ?? '' ?></small>
+        </div>
+
+        <div class="mt-5">
+
+            <div class="flex justify-between items-center">
+                <h1 class="!text-2xl h10 ">Role Permissions</h1>
+                <button type="submit" class="whitespace-nowrap rounded-radius bg-surface-alt border border-surface-alt px-4 py-2 text-sm font-medium tracking-wide text-on-surface-strong transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface-alt active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-surface-dark-alt dark:border-surface-dark-alt dark:text-on-surface-dark-strong dark:focus-visible:outline-surface-dark-alt cursor-pointer" type="submit">Create</button>
+
+            </div>
+            <div class="overflow-hidden w-full overflow-x-auto rounded-xl border border-neutral-300 dark:border-neutral-700">
+                <table class="w-full text-left text-sm text-neutral-800 dark:text-neutral-300">
+                    <thead class="border-b border-neutral-300 bg-neutral-200 text-sm text-black dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100">
+                        <tr>
+                            <th scope="col" class="p-4">Feature</th>
+                            <th scope="col" class="p-4">Permissions</th>
+                            <th scope="col" class="p-4"></th>
+                            <th scope="col" class="p-4"></th>
+                            <th scope="col" class="p-4"></th>
+                            <th scope="col" class="p-4"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-neutral-300 dark:divide-neutral-700">
+                        <?php foreach ($features as $feature_name => $permissions) : ?>
+                            <tr x-data="{selectAll: false}">
+                                <td class="p-4">
+                                    <?= $feature_name ?>
+                                </td>
+
+                                <td class="p-4"><label for="checkboxDefault" class="flex items-center gap-2 text-sm font-medium text-on-surface dark:text-on-surface-dark has-checked:text-on-surface-strong dark:has-checked:text-on-surface-dark-strong has-disabled:cursor-not-allowed has-disabled:opacity-75">
+                                        <div class="relative flex items-center">
+                                            <input id="checkboxDefault" x-model="selectAll" type="checkbox" class="before:content[''] peer relative size-4 appearance-none overflow-hidden rounded-sm border border-outline bg-surface-alt before:absolute before:inset-0 checked:border-primary checked:before:bg-primary focus:outline-2 focus:outline-offset-2 focus:outline-outline-strong checked:focus:outline-primary active:outline-offset-0 disabled:cursor-not-allowed dark:border-outline-dark dark:bg-surface-dark-alt dark:checked:border-primary-dark dark:checked:before:bg-primary-dark dark:focus:outline-outline-dark-strong dark:checked:focus:outline-primary-dark" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="4" class="pointer-events-none invisible absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 text-on-primary peer-checked:visible dark:text-on-primary-dark">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                            </svg>
+                                        </div>
+                                        <span>Select All</span>
+                                    </label>
+                                </td>
+
+                                <?php foreach ($permissions as $key => $permission) : ?>
+                                    <td class="p-4"><label for="checkboxDefault" class="flex items-center gap-2 text-sm font-medium text-on-surface dark:text-on-surface-dark has-checked:text-on-surface-strong dark:has-checked:text-on-surface-dark-strong has-disabled:cursor-not-allowed has-disabled:opacity-75">
+                                            <div class="relative flex items-center">
+                                                <input id="checkboxDefault" x-model="selectAll" type="checkbox" name="permissions[]" value="<?= $permission['permission_id'] ?>" class="before:content[''] peer relative size-4 appearance-none overflow-hidden rounded-sm border border-outline bg-surface-alt before:absolute before:inset-0 checked:border-primary checked:before:bg-primary focus:outline-2 focus:outline-offset-2 focus:outline-outline-strong checked:focus:outline-primary active:outline-offset-0 disabled:cursor-not-allowed dark:border-outline-dark dark:bg-surface-dark-alt dark:checked:border-primary-dark dark:checked:before:bg-primary-dark dark:focus:outline-outline-dark-strong dark:checked:focus:outline-primary-dark" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="4" class="pointer-events-none invisible absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 text-on-primary peer-checked:visible dark:text-on-primary-dark">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                </svg>
+                                            </div>
+                                            <span>
+                                                <?= $permission['permission_name'] ?>
+                                            </span>
+                                        </label>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </form>
+
+
+</div>
+
+<?php require BASE_PATH . 'views/partials/footer.php' ?>
