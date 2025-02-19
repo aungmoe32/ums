@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script
         defer
         src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -19,44 +21,44 @@
     <style type="text/tailwindcss">
 
         @theme {
-       
     /* Light Theme */
-    --color-surface: var(--color-white);
-    --color-surface-alt: var(--color-emerald-50);
-    --color-on-surface: var(--color-neutral-700);
-    --color-on-surface-strong: var(--color-emerald-800);
-    --color-primary: var(--color-red-600);
+    --color-surface: var(--color-neutral-100);
+    --color-surface-alt: var(--color-neutral-200);
+    --color-on-surface: var(--color-neutral-800);
+    --color-on-surface-strong: var(--color-black);
+    --color-primary: var(--color-purple-500);
     --color-on-primary: var(--color-white);
-    --color-secondary: var(--color-emerald-700);
+    --color-secondary: var(--color-sky-500);
     --color-on-secondary: var(--color-white);
-    --color-outline: transparent;
+    --color-outline: var(--color-neutral-300);
     --color-outline-strong: var(--color-neutral-800);
 
     /* Dark Theme */
-    --color-surface-dark: var(--color-emerald-950);
-    --color-surface-dark-alt: var(--color-emerald-800);
-    --color-on-surface-dark: var(--color-neutral-200);
-    --color-on-surface-dark-strong: var(--color-amber-100);
-    --color-primary-dark: var(--color-red-600);
-    --color-on-primary-dark: var(--color-white);
-    --color-secondary-dark: var(--color-emerald-600);
-    --color-on-secondary-dark: var(--color-white);
-    --color-outline-dark: var(--color-emerald-900);
-    --color-outline-dark-strong: var(--color-white);
-    --font-poppins: 'Poppins', sans-serif; 
-    --font-oswald: 'Oswald', sans-serif;
+    --color-surface-dark: var(--color-neutral-800);
+    --color-surface-dark-alt: var(--color-neutral-900);
+    --color-on-surface-dark: var(--color-neutral-300);
+    --color-on-surface-dark-strong: var(--color-neutral-100);
+    --color-primary-dark: var(--color-purple-400);
+    --color-on-primary-dark: var(--color-black);
+    --color-secondary-dark: var(--color-blue-400);
+    --color-on-secondary-dark: var(--color-black);
+    --color-outline-dark: var(--color-neutral-700);
+    --color-outline-dark-strong: var(--color-neutral-300);
+
     /* Shared Colors */
     --color-info: var(--color-cyan-500);
     --color-on-info: var(--color-black);
-    --color-success: var(--color-emerald-500);
+    --color-success: var(--color-teal-400);
     --color-on-success: var(--color-black);
-    --color-warning: var(--color-amber-500);
+    --color-warning: var(--color-yellow-300);
     --color-on-warning: var(--color-black);
-    --color-danger: var(--color-red-500);
+    --color-danger: var(--color-pink-500);
     --color-on-danger: var(--color-black);
 
     /* Border Radius */
-    --radius-radius: var(--radius-md);
+    --radius-radius: var(--radius-xl); 
+    --font-poppins: 'Poppins', sans-serif; 
+    --font-oswald: 'Oswald', sans-serif;
 }  
 
 h1,
@@ -127,17 +129,17 @@ body {
 
                     <ul x-cloak x-collapse x-show="isExpanded" aria-labelledby="user-management-btn" id="user-management">
                         <li class="px-1 py-0.5 first:mt-2">
-                            <a href="#" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">User List</a>
+                            <a href="/users" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">User List</a>
                         </li>
                         <li class="px-1 py-0.5 first:mt-2">
-                            <a href="#" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Create User</a>
+                            <a href="/users/create" class="flex items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">Create User</a>
                         </li>
                     </ul>
                 </div>
                 <div x-data="{ isExpanded: false }" class="flex flex-col">
                     <button type="button" x-on:click="isExpanded = ! isExpanded" id="user-management-btn" aria-controls="user-management" x-bind:aria-expanded="isExpanded ? 'true' : 'false'" class="flex items-center justify-between rounded-radius gap-2 px-2 py-1.5 text-sm font-medium underline-offset-2 focus:outline-hidden focus-visible:underline" x-bind:class="isExpanded ? 'text-on-surface-strong bg-primary/10 dark:text-on-surface-dark-strong dark:bg-primary-dark/10' :  'text-on-surface hover:bg-primary/5 hover:text-on-surface-strong dark:text-on-surface-dark dark:hover:text-on-surface-dark-strong dark:hover:bg-primary-dark/5'">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0" aria-hidden="true">
-                            <path d="M7 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM14.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1.615 16.428a1.224 1.224 0 0 1-.569-1.175 6.002 6.002 0 0 1 11.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 0 1 7 18a9.953 9.953 0 0 1-5.385-1.572ZM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 0 0-1.588-3.755 4.502 4.502 0 0 1 5.874 2.636.818.818 0 0 1-.36.98A7.465 7.465 0 0 1 14.5 16Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 shrink-0" aria-hidden="true">
+                            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z" />
                         </svg>
                         <span class="mr-auto text-left">Roles</span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 transition-transform rotate-0 shrink-0" x-bind:class="isExpanded ? 'rotate-180' : 'rotate-0'" aria-hidden="true">

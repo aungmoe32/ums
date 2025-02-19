@@ -8,6 +8,10 @@ $router->get('/roles/create', 'roles/create.php');
 $router->post('/roles', 'roles/store.php');
 $router->get('/roles', 'roles/index.php');
 
+$router->get('/users/create', 'users/create.php');
+$router->post('/users', 'users/store.php');
+$router->get('/users', 'users/index.php');
+
 $router->get('/notes', 'notes/index.php')->only('auth');
 $router->get('/note', 'notes/show.php')->only('auth');
 $router->delete('/note', 'notes/destroy.php');
