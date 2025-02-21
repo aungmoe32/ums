@@ -49,7 +49,7 @@ ums/
 ## Requirements
 
 - PHP 8.0 or higher
-- PostgreSQL / MySQL
+- MySQL
 - Composer
 - Web server (Apache/Nginx)
 
