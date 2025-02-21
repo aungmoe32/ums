@@ -27,7 +27,7 @@
     <h1 class="h10"><?= $heading ?></h1>
 
 
-    <form action="http://ums.test/users" class="mt-5" method="POST">
+    <form action="/users" class="mt-5" method="POST">
         <?= csrf_field() ?>
         <div class="flex flex-col space-y-4">
             <div class="flex w-full max-w-xs flex-col gap-1 text-neutral-800 dark:text-neutral-300">

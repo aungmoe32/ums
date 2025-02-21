@@ -25,7 +25,7 @@
     <h1 class="h10"><?= $heading ?? 'Create Role' ?></h1>
 
 
-    <form action="http://ums.test/roles" method="POST">
+    <form action="/roles" method="POST">
         <?= csrf_field() ?>
         <div class="form-group">
             <div class="flex w-full max-w-xs flex-col gap-1 text-neutral-800 dark:text-neutral-300">
