@@ -2,6 +2,7 @@
 
 use Core\Session;
 use Core\ValidationException;
+use Core\CsrfTokenException;
 
 const BASE_PATH = __DIR__ . '/../';
 
@@ -23,6 +24,9 @@ try {
     Session::flash('errors', $exception->errors);
     Session::flash('old', $exception->old);
 
+    return redirect($router->previousUrl());
+} catch (CsrfTokenException $exception) {
+    Session::flash('errors', ['csrf_token' => $exception->getMessage()]);
     return redirect($router->previousUrl());
 }
 

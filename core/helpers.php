@@ -57,3 +57,11 @@ function old($key, $default = '')
 {
     return Core\Session::get('old')[$key] ?? $default;
 }
+
+function csrf_field()
+{
+    return sprintf(
+        '<input type="hidden" name="_token" value="%s">',
+        Core\Csrf::generateToken()
+    );
+}

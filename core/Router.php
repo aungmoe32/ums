@@ -10,41 +10,41 @@ class Router
 {
     protected $routes = [];
 
-    public function add($method, $uri, $controller)
+    public function add($method, $uri, $controller, $middlewares = null)
     {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
             'method' => $method,
-            'middleware' => null
+            'middleware' => $middlewares ?? null
         ];
 
         return $this;
     }
 
-    public function get($uri, $controller)
+    public function get($uri, $controller, $middlewares = null)
     {
-        return $this->add('GET', $uri, $controller);
+        return $this->add('GET', $uri, $controller, $middlewares);
     }
 
-    public function post($uri, $controller)
+    public function post($uri, $controller, $middlewares = null)
     {
-        return $this->add('POST', $uri, $controller);
+        return $this->add('POST', $uri, $controller, $middlewares);
     }
 
-    public function delete($uri, $controller)
+    public function delete($uri, $controller, $middlewares = null)
     {
-        return $this->add('DELETE', $uri, $controller);
+        return $this->add('DELETE', $uri, $controller, $middlewares);
     }
 
-    public function patch($uri, $controller)
+    public function patch($uri, $controller, $middlewares = null)
     {
-        return $this->add('PATCH', $uri, $controller);
+        return $this->add('PATCH', $uri, $controller, $middlewares);
     }
 
-    public function put($uri, $controller)
+    public function put($uri, $controller, $middlewares = null)
     {
-        return $this->add('PUT', $uri, $controller);
+        return $this->add('PUT', $uri, $controller, $middlewares);
     }
 
     public function only($key)
@@ -58,7 +58,13 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                Middleware::resolve($route['middleware']);
+                if (is_array($route['middleware'])) {
+                    foreach ($route['middleware'] as $middleware) {
+                        Middleware::resolve($middleware);
+                    }
+                } elseif ($route['middleware']) {
+                    Middleware::resolve($route['middleware']);
+                }
 
                 return require base_path('http/controllers/' . $route['controller']);
             }

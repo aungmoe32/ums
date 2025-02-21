@@ -32,17 +32,29 @@ if (count($errors) > 0) {
     return redirect('/roles/create');
 }
 
-$db->query("INSERT INTO roles(name) VALUES(:name)", [
-    'name' => $_POST['role']
-]);
+try {
+    $db->beginTransaction();
 
-$role_id = $db->lastInsertId();
-
-foreach ($_POST['permissions'] as $permission) {
-    $db->query("INSERT INTO role_permissions(role_id, permission_id) VALUES(:role_id, :permission_id)", [
-        'role_id' => $role_id,
-        'permission_id' => $permission
+    $db->query("INSERT INTO roles(name) VALUES(:name)", [
+        'name' => $_POST['role']
     ]);
+
+    $role_id = $db->lastInsertId();
+
+    foreach ($_POST['permissions'] as $permission) {
+        $db->query("INSERT INTO role_permissions(role_id, permission_id) VALUES(:role_id, :permission_id)", [
+            'role_id' => $role_id,
+            'permission_id' => $permission
+        ]);
+    }
+
+    $db->commit();
+} catch (\PDOException $e) {
+    $db->rollBack();
+
+    // Flash error message and redirect
+    \Core\Session::flash('errors', ['database' => 'An error occurred while creating the role']);
+    return redirect('/roles/create');
 }
 
 // Redirect to a success page or login page

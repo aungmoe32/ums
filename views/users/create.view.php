@@ -28,6 +28,7 @@
 
 
     <form action="http://ums.test/users" class="mt-5" method="POST">
+        <?= csrf_field() ?>
         <div class="flex flex-col space-y-4">
             <div class="flex w-full max-w-xs flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="textInputDefault" class="w-fit pl-0.5 text-sm">User Name</label>
