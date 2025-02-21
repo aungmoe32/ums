@@ -56,7 +56,7 @@
                 <select id="role" name="role" required class="w-full appearance-none rounded-xl border border-neutral-300 bg-neutral-200 px-4 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400">
                     <option value="" disabled <?= old('role') ? '' : 'selected' ?>>Please Select Role</option>
                     <?php foreach ($roles as $role) : ?>
-                        <option value="<?= $role['id'] ?>" <?= old('role') == $role['id'] ? 'selected' : '' ?>><?= $role['name'] ?></option>
+                        <option value="<?= htmlspecialchars($role['id']) ?>" <?= old('role') == $role['id'] ? 'selected' : '' ?>><?= htmlspecialchars($role['name']) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

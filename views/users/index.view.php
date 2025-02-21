@@ -18,14 +18,14 @@
             <tbody class="divide-y divide-outline dark:divide-outline-dark">
                 <?php foreach ($users as $user) : ?>
                     <tr>
-                        <td class="p-4"><?= $user['id'] ?></td>
-                        <td class="p-4"><?= $user['name'] ?></td>
-                        <td class="p-4"><?= $user['email'] ?></td>
-                        <td class="p-4"><?= $user['role'] ?></td>
+                        <td class="p-4"><?= htmlspecialchars($user['id']) ?></td>
+                        <td class="p-4"><?= htmlspecialchars($user['name']) ?></td>
+                        <td class="p-4"><?= htmlspecialchars($user['email']) ?></td>
+                        <td class="p-4"><?= htmlspecialchars($user['role']) ?></td>
                         <td class="p-4">
-                            <a href="/users/edit?id=<?= $user['id'] ?>" class="text-blue-500">Edit</a>
+                            <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
                             <form method="POST" action="/users/delete" class="inline">
-                                <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
                                 <button type="submit" class="text-red-500">Delete</button>
                             </form>
                         </td>
