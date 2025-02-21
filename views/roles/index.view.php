@@ -35,8 +35,40 @@
             <tbody class="divide-y divide-outline dark:divide-outline-dark">
                 <?php foreach ($roles as $role) : ?>
                     <tr>
-                        <td class="p-4"><?= $role['id'] ?></td>
-                        <td class="p-4"><?= $role['name'] ?></td>
+                        <td class="p-4"><?= $role['role_id'] ?></td>
+                        <td class="p-4"><?= $role['role_name'] ?></td>
+                        <td class="p-4">
+                            <div x-data="{modalIsOpen: false}">
+                                <button type="button" x-on:click="modalIsOpen = true" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-primary-dark dark:focus-visible:outline-primary-dark">permissions</button>
+
+                                <div x-cloak x-show="modalIsOpen" x-transition.opacity.duration.200ms x-trap.inert.noscroll="modalIsOpen" x-on:keydown.esc.window="modalIsOpen = false" x-on:click.self="modalIsOpen = false" class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 backdrop-blur-md sm:items-center lg:p-8" role="dialog" aria-modal="true" aria-labelledby="defaultModalTitle">
+                                    <!-- Modal Dialog -->
+                                    <div x-show="modalIsOpen" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0 scale-50" x-transition:enter-end="opacity-100 scale-100" class="flex max-w-lg flex-col gap-4 overflow-hidden rounded-xl border border-neutral-300 bg-neutral-100 text-neutral-800 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+                                        <!-- Dialog Body -->
+                                        <div class="px-4 py-8">
+                                            <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
+                                                <thead class="border-b border-outline bg-surface-alt text-sm text-on-surface-strong dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark-strong">
+                                                    <tr>
+                                                        <th scope="col" class="p-4">Feature</th>
+                                                        <th scope="col" class="p-4">Permissions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-outline dark:divide-outline-dark">
+                                                    <?php foreach ($role['features'] as $featureArray) : ?>
+                                                        <?php foreach ($featureArray as $feature => $permissions) : ?>
+                                                            <tr>
+                                                                <td class="p-4"><?= $feature ?></td>
+                                                                <td class="p-4"><?= implode(', ', $permissions) ?></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
