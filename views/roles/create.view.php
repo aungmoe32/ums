@@ -19,6 +19,14 @@
         </div>
     </div>
 <?php endif; ?>
+<?php if (!in_array('create', $permissions['role'])) : ?>
+    <div class="container flex flex-col items-center justify-center h-full">
+        <h1 class="text-2xl font-semibold text-red-500">You do not have permission to create roles.</h1>
+    </div>
+    <?php require BASE_PATH . 'views/partials/sidebar-footer.php' ?>
+    <?php require BASE_PATH . 'views/partials/footer.php' ?>
+    <?php exit; ?>
+<?php endif; ?>
 
 <div class="container flex flex-col">
 
@@ -45,10 +53,6 @@
 
             <div class="flex justify-between items-center">
                 <h1 class="!text-2xl h10 ">Role Permissions</h1>
-                <div class="flex gap-2">
-                    <button type="submit" class="cursor-pointer whitespace-nowrap rounded-radius bg-primary border border-primary px-4 py-2 text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-primary-dark dark:border-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark">Create</button>
-                    <button type="submit" name="action" value="create_another" class="cursor-pointer whitespace-nowrap rounded-radius bg-surface-alt border border-surface-alt px-4 py-2 text-sm font-medium tracking-wide text-on-surface-strong transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface-alt active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-surface-dark-alt dark:border-surface-dark-alt dark:text-on-surface-dark-strong dark:focus-visible:outline-surface-dark-alt">Create & Create Another</button>
-                </div>
             </div>
             <div class="overflow-hidden w-full overflow-x-auto rounded-xl border border-neutral-300 dark:border-neutral-700">
                 <table class="w-full text-left text-sm text-neutral-800 dark:text-neutral-300">
@@ -101,6 +105,10 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="flex gap-2 mt-5">
+                <button type="submit" class="cursor-pointer whitespace-nowrap rounded-radius bg-primary border border-primary px-4 py-2 text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-primary-dark dark:border-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark">Create</button>
+                <button type="submit" name="action" value="create_another" class="cursor-pointer whitespace-nowrap rounded-radius bg-surface-alt border border-surface-alt px-4 py-2 text-sm font-medium tracking-wide text-on-surface-strong transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface-alt active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-surface-dark-alt dark:border-surface-dark-alt dark:text-on-surface-dark-strong dark:focus-visible:outline-surface-dark-alt">Create & Create Another</button>
             </div>
 
         </div>

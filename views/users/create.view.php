@@ -20,12 +20,18 @@
     </div>
 <?php endif; ?>
 
-
+<?php if (!in_array('create', $permissions['user'])) : ?>
+    <div class="container flex flex-col items-center justify-center h-full">
+        <h1 class="text-2xl font-semibold text-red-500">You do not have permission to create users.</h1>
+    </div>
+    <?php require BASE_PATH . 'views/partials/sidebar-footer.php' ?>
+    <?php require BASE_PATH . 'views/partials/footer.php' ?>
+    <?php exit; ?>
+<?php endif; ?>
 
 <div class="container flex flex-col px-10">
 
     <h1 class="h10"><?= $heading ?></h1>
-
 
     <form action="/users" class="mt-5" method="POST">
         <?= csrf_field() ?>

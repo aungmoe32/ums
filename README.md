@@ -81,13 +81,17 @@ return [
 ];
 ```
 
-4. Run the development server:
+4. Run the seeder to populate the database:
+
+```bash
+php database/seed.php
+```
+
+5. Run the development server:
 
 ```bash
 php -S localhost:8000 -t public
 ```
-
-5. Create necessary database tables (schema will be provided)
 
 ## Features in Detail
 

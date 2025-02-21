@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
 $roles = $db->query('
@@ -48,7 +49,10 @@ $roles = array_map(function ($roleId, $roleData) {
     ];
 }, array_keys($formattedRoles), $formattedRoles);
 
+$permissions = App::resolve(Authenticator::class)->permissions();
+
 view("roles/index.view.php", [
     'heading' => 'Roles',
-    'roles' => $roles
+    'roles' => $roles,
+    'permissions' => $permissions
 ]);

@@ -67,7 +67,8 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: var(--font-oswald);
+    /* font-family: var(--font-oswald); */
+    font-family: var(--font-poppins);
 
 }
 body {

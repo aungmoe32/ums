@@ -6,6 +6,7 @@ $router->get('/roles/create', 'roles/create.php')->only('auth');
 $router->post('/roles', 'roles/store.php', ['csrf', 'auth']);
 $router->get('/roles', 'roles/index.php')->only('auth');
 $router->get('/roles/show', 'roles/show.php')->only('auth');
+$router->post('/roles/delete', 'roles/destroy.php', ['csrf', 'auth']);
 
 $router->get('/users/create', 'users/create.php')->only('auth');
 $router->post('/users', 'users/store.php', ['csrf', 'auth']);

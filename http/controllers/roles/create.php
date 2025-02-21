@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
 $roles = $db->query('
@@ -17,8 +18,11 @@ foreach ($roles as $role) {
 
 // dd($features);
 
+$permissions = App::resolve(Authenticator::class)->permissions();
+
 view("roles/create.view.php", [
     'heading' => 'Create Role',
     'features' => $features,
-    'errors' => \Core\Session::get('errors')
+    'errors' => \Core\Session::get('errors'),
+    'permissions' => $permissions
 ]);

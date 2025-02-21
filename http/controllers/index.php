@@ -1,3 +1,3 @@
 <?php
 
-redirect('/users');
+view('index.view.php');

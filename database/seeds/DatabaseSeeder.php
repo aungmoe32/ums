@@ -6,8 +6,8 @@ class DatabaseSeeder
     private $seeds = [
         'features' => [
             ['id' => 1, 'name' => 'user'],
-            ['id' => 2, 'name' => 'products'],
-            ['id' => 3, 'name' => 'orders'],
+            ['id' => 2, 'name' => 'role'],
+            ['id' => 3, 'name' => 'product'],
         ],
 
         'permissions' => [
@@ -18,16 +18,16 @@ class DatabaseSeeder
             ['id' => 4, 'name' => 'delete', 'feature_id' => 1],
 
             // Product permissions
-            ['id' => 6, 'name' => 'view', 'feature_id' => 2],
-            ['id' => 7, 'name' => 'create', 'feature_id' => 2],
-            ['id' => 8, 'name' => 'edit', 'feature_id' => 2],
-            ['id' => 9, 'name' => 'delete', 'feature_id' => 2],
+            ['id' => 5, 'name' => 'view', 'feature_id' => 2],
+            ['id' => 6, 'name' => 'create', 'feature_id' => 2],
+            ['id' => 7, 'name' => 'edit', 'feature_id' => 2],
+            ['id' => 8, 'name' => 'delete', 'feature_id' => 2],
 
             // Order permissions
-            ['id' => 11, 'name' => 'view', 'feature_id' => 3],
-            ['id' => 12, 'name' => 'create', 'feature_id' => 3],
-            ['id' => 13, 'name' => 'edit', 'feature_id' => 3],
-            ['id' => 14, 'name' => 'delete', 'feature_id' => 3],
+            ['id' => 9, 'name' => 'view', 'feature_id' => 3],
+            ['id' => 10, 'name' => 'create', 'feature_id' => 3],
+            ['id' => 11, 'name' => 'edit', 'feature_id' => 3],
+            ['id' => 12, 'name' => 'delete', 'feature_id' => 3],
         ],
 
         'roles' => [
@@ -40,12 +40,15 @@ class DatabaseSeeder
             ['role_id' => 1, 'permission_id' => 1],
             ['role_id' => 1, 'permission_id' => 2],
             ['role_id' => 1, 'permission_id' => 3],
+            ['role_id' => 1, 'permission_id' => 4],
             ['role_id' => 1, 'permission_id' => 5],
             ['role_id' => 1, 'permission_id' => 6],
             ['role_id' => 1, 'permission_id' => 7],
+            ['role_id' => 1, 'permission_id' => 8],
             ['role_id' => 1, 'permission_id' => 9],
             ['role_id' => 1, 'permission_id' => 10],
             ['role_id' => 1, 'permission_id' => 11],
+            ['role_id' => 1, 'permission_id' => 12],
 
             // Regular user has only view permissions
             ['role_id' => 2, 'permission_id' => 1],

@@ -23,7 +23,6 @@
 <div class="container flex flex-col">
     <div class="flex justify-between items-center">
         <h1 class="h10"><?= $heading ?></h1>
-        <a href="/roles/create" class="cursor-pointer whitespace-nowrap rounded-radius bg-primary border border-primary px-4 py-2 text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-primary-dark dark:border-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark">Create Role</a>
     </div>
     <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
         <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
@@ -38,12 +37,50 @@
                 <?php foreach ($roles as $role) : ?>
                     <tr>
                         <td class="p-4"><?= htmlspecialchars($role['role_id']) ?></td>
-                        <td class="p-4"><?= htmlspecialchars($role['role_name']) ?></td>
+                        <td class="p-4">
+
+                            <a href="/roles/show?id=<?= htmlspecialchars($role['role_id']) ?>" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-green-500 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-green-400 dark:focus-visible:outline-green-400">
+                                <?= htmlspecialchars($role['role_name']) ?>
+                            </a>
+                        </td>
                         <td class="p-4">
                             <div class="flex gap-2">
-                                <a href="/roles/show?id=<?= htmlspecialchars($role['role_id']) ?>" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-primary-dark dark:focus-visible:outline-primary-dark">
-                                    view
-                                </a>
+                                <?php if (in_array('edit', $permissions['role'])) : ?>
+                                    <a href="/roles/edit?id=<?= htmlspecialchars($role['role_id']) ?>" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-primary-dark dark:focus-visible:outline-primary-dark">edit</a>
+                                <?php endif; ?>
+
+                                <?php if (in_array('delete', $permissions['role'])) : ?>
+                                    <div x-data="{deleteModalIsOpen: false}">
+                                        <button type="button" x-on:click="deleteModalIsOpen = true" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-red-500 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-red-400 dark:focus-visible:outline-red-400">delete</button>
+
+                                        <div x-cloak x-show="deleteModalIsOpen" x-transition.opacity.duration.200ms x-trap.inert.noscroll="deleteModalIsOpen" x-on:keydown.esc.window="deleteModalIsOpen = false" x-on:click.self="deleteModalIsOpen = false" class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 backdrop-blur-md sm:items-center lg:p-8" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+                                            <!-- Modal Dialog -->
+                                            <div x-show="deleteModalIsOpen" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0 scale-50" x-transition:enter-end="opacity-100 scale-100" class="flex max-w-lg flex-col gap-4 overflow-hidden rounded-xl border border-neutral-300 bg-neutral-100 text-neutral-800 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+                                                <div class="flex items-center justify-between border-b border-outline bg-surface-alt/60 p-4 dark:border-outline-dark dark:bg-surface-dark/20">
+                                                    <h3 id="deleteModalTitle" class="font-semibold tracking-wide text-on-surface-strong dark:text-on-surface-dark-strong">Delete Role <?= htmlspecialchars($role['role_name']) ?></h3>
+                                                    <button x-on:click="deleteModalIsOpen = false" aria-label="close modal">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="1.4" class="w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <!-- Dialog Body -->
+                                                <div class="px-4 py-8">
+                                                    <p class="text-sm text-on-surface dark:text-on-surface-dark">Are you sure you want to delete the role "<?= htmlspecialchars($role['role_name']) ?>"? This action cannot be undone.</p>
+                                                    <div class="flex justify-end gap-2 mt-4">
+                                                        <button type="button" x-on:click="deleteModalIsOpen = false" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-neutral-500 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-neutral-400 dark:focus-visible:outline-neutral-400">Cancel</button>
+                                                        <form action="/roles/delete" method="POST">
+                                                            <?= csrf_field() ?>
+                                                            <input type="hidden" name="role_id" value="<?= htmlspecialchars($role['role_id']) ?>">
+                                                            <button type="submit" class="cursor-pointer bg-red-500 rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-red-400 dark:focus-visible:outline-red-400">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div x-data="{modalIsOpen: false}">
                                     <button type="button" x-on:click="modalIsOpen = true" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-primary-dark dark:focus-visible:outline-primary-dark">permissions</button>
 
@@ -69,10 +106,10 @@
                                                     </thead>
                                                     <tbody class="divide-y divide-outline dark:divide-outline-dark">
                                                         <?php foreach ($role['features'] as $featureArray) : ?>
-                                                            <?php foreach ($featureArray as $feature => $permissions) : ?>
+                                                            <?php foreach ($featureArray as $feature => $pers) : ?>
                                                                 <tr>
                                                                     <td class="p-4"><?= htmlspecialchars($feature) ?></td>
-                                                                    <td class="p-4"><?= htmlspecialchars(implode(', ', $permissions)) ?></td>
+                                                                    <td class="p-4"><?= htmlspecialchars(implode(', ', $pers)) ?></td>
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                         <?php endforeach; ?>

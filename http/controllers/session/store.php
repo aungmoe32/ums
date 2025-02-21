@@ -15,7 +15,6 @@ $auth_result = (new Authenticator)->attempt(
 
 if ($auth_result !== true) {
     $message = match ($auth_result) {
-        'not_admin' => 'This area is restricted to administrators only.',
         'invalid_credentials' => 'No matching account found for that email address and password.'
     };
 

@@ -4,7 +4,6 @@
 
     <div class="flex justify-between items-center">
         <h1 class="h10"><?= $heading ?></h1>
-        <a href="/users/create" class="cursor-pointer whitespace-nowrap rounded-radius bg-primary border border-primary px-4 py-2 text-sm font-medium tracking-wide text-on-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-primary-dark dark:border-primary-dark dark:text-on-primary-dark dark:focus-visible:outline-primary-dark">Create User</a>
     </div>
 
     <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
@@ -29,9 +28,11 @@
                                 <?= htmlspecialchars($user['role']) ?>
                             </a>
                         </td>
-                        <td class="p-4">
-                            <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
-                        </td>
+                        <?php if (in_array('edit', $permissions['user'])) : ?>
+                            <td class="p-4">
+                                <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

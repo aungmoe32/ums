@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
 $users = $db->query('
@@ -10,7 +11,10 @@ $users = $db->query('
     join roles on users.role_id = roles.id
 ')->get();
 
+$permissions = App::resolve(Authenticator::class)->permissions();
+
 view("users/index.view.php", [
     'heading' => 'Users',
-    'users' => $users
+    'users' => $users,
+    'permissions' => $permissions
 ]);
