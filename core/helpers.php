@@ -65,3 +65,8 @@ function csrf_field()
         Core\Csrf::generateToken()
     );
 }
+
+function previousUrl()
+{
+    return $_SERVER['HTTP_REFERER'];
+}

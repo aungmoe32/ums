@@ -27,11 +27,7 @@
                             </a>
                         </td>
                         <td class="p-4">
-                            <!-- <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
-                            <form method="POST" action="/users/delete" class="inline">
-                                <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
-                                <button type="submit" class="text-red-500">Delete</button>
-                            </form> -->
+                            <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
