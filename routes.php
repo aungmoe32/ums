@@ -1,26 +1,14 @@
 <?php
 
-$router->get('/', 'index.php');
-$router->get('/about', 'about.php');
-$router->get('/contact', 'contact.php');
+$router->get('/', 'index.php')->only('auth');
 
-$router->get('/roles/create', 'roles/create.php');
-$router->post('/roles', 'roles/store.php');
-$router->get('/roles', 'roles/index.php');
+$router->get('/roles/create', 'roles/create.php')->only('auth');
+$router->post('/roles', 'roles/store.php')->only('auth');
+$router->get('/roles', 'roles/index.php')->only('auth');
 
-$router->get('/users/create', 'users/create.php');
-$router->post('/users', 'users/store.php');
-$router->get('/users', 'users/index.php');
-
-$router->get('/notes', 'notes/index.php')->only('auth');
-$router->get('/note', 'notes/show.php')->only('auth');
-$router->delete('/note', 'notes/destroy.php');
-
-$router->get('/note/edit', 'notes/edit.php');
-$router->patch('/note', 'notes/update.php');
-
-$router->get('/notes/create', 'notes/create.php');
-$router->post('/notes', 'notes/store.php');
+$router->get('/users/create', 'users/create.php')->only('auth');
+$router->post('/users', 'users/store.php')->only('auth');
+$router->get('/users', 'users/index.php')->only('auth');
 
 $router->get('/register', 'registration/create.php')->only('guest');
 $router->post('/register', 'registration/store.php')->only('guest');

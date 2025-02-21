@@ -1,5 +1,5 @@
 <?php require BASE_PATH . 'views/partials/head.php' ?>
-
+<?php require BASE_PATH . 'views/partials/sidebar.php' ?>
 <?php if (\Core\Session::has('success')) : ?>
     <div x-data="{ alertIsVisible: true }" x-show="alertIsVisible" class="relative w-full overflow-hidden rounded-xl border border-teal-400 bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-300" role="alert" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
         <div class="flex w-full items-center gap-2 bg-teal-400/10 p-4">
@@ -73,4 +73,5 @@
 
 </div>
 
+<?php require BASE_PATH . 'views/partials/sidebar-footer.php' ?>
 <?php require BASE_PATH . 'views/partials/footer.php' ?>

@@ -1,5 +1,5 @@
 <?php require BASE_PATH . 'views/partials/head.php' ?>
-
+<?php require BASE_PATH . 'views/partials/sidebar.php' ?>
 <div class="container flex flex-col">
 
     <h1 class="h10"><?= $heading ?></h1>
@@ -37,4 +37,5 @@
 
 </div>
 
+<?php require BASE_PATH . 'views/partials/sidebar-footer.php' ?>
 <?php require BASE_PATH . 'views/partials/footer.php' ?>

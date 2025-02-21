@@ -20,5 +20,5 @@ foreach ($roles as $role) {
 view("roles/create.view.php", [
     'heading' => 'Create Role',
     'features' => $features,
-    'errors' => []
+    'errors' => \Core\Session::get('errors')
 ]);
