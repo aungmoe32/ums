@@ -5,7 +5,7 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 $users = $db->query('
-    select users.id, users.name, users.email, roles.name as role 
+    select users.id, users.name, users.email, users.role_id, roles.name as role 
     from users 
     join roles on users.role_id = roles.id
 ')->get();

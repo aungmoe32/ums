@@ -21,13 +21,17 @@
                         <td class="p-4"><?= htmlspecialchars($user['id']) ?></td>
                         <td class="p-4"><?= htmlspecialchars($user['name']) ?></td>
                         <td class="p-4"><?= htmlspecialchars($user['email']) ?></td>
-                        <td class="p-4"><?= htmlspecialchars($user['role']) ?></td>
                         <td class="p-4">
-                            <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
+                            <a href="/roles/show?id=<?= htmlspecialchars($user['role_id']) ?>" class="text-blue-500">
+                                <?= htmlspecialchars($user['role']) ?>
+                            </a>
+                        </td>
+                        <td class="p-4">
+                            <!-- <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
                             <form method="POST" action="/users/delete" class="inline">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
                                 <button type="submit" class="text-red-500">Delete</button>
-                            </form>
+                            </form> -->
                         </td>
                     </tr>
                 <?php endforeach; ?>

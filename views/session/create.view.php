@@ -1,10 +1,10 @@
 <?php require base_path('views/partials/head.php') ?>
 
-<main>
-    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<main class="h-screen">
+    <div class="flex min-h-full items-start justify-center py-12 px-4 sm:px-6 lg:px-8 bg-surface-dark">
         <div class="w-full max-w-md space-y-8">
             <div>
-                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Admin Log In!</h2>
+                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-on-surface-dark">Admin Log In!</h2>
             </div>
 
             <form class="mt-8 space-y-6" action="/session" method="POST">
@@ -17,7 +17,7 @@
                             type="email"
                             autocomplete="email"
                             required
-                            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            class="relative block w-full appearance-none rounded-none rounded-t-md border border-outline-dark px-3 py-2 text-on-surface-dark placeholder-on-surface-dark focus:z-10 focus:border-primary-dark focus:outline-none focus:ring-primary-dark sm:text-sm"
                             placeholder="Email address"
                             value="<?= htmlspecialchars(old('email')) ?>">
                     </div>
@@ -29,29 +29,29 @@
                             type="password"
                             autocomplete="current-password"
                             required
-                            class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            class="relative block w-full appearance-none rounded-none rounded-b-md border border-outline-dark px-3 py-2 text-on-surface-dark placeholder-on-surface-dark focus:z-10 focus:border-primary-dark focus:outline-none focus:ring-primary-dark sm:text-sm"
                             placeholder="Password">
                     </div>
                 </div>
 
                 <div>
                     <button type="submit"
-                        class="cursor-pointer group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        class="cursor-pointer group relative flex w-full justify-center rounded-md border border-transparent bg-primary-dark py-2 px-4 text-sm font-medium text-on-primary-dark hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary-dark focus:ring-offset-2">
                         Log In
                     </button>
                 </div>
 
                 <ul>
                     <?php if (isset($errors['email'])) : ?>
-                        <li class="text-red-500 text-xs mt-2"><?= $errors['email'] ?></li>
+                        <li class="text-danger text-xs mt-2"><?= $errors['email'] ?></li>
                     <?php endif; ?>
 
                     <?php if (isset($errors['password'])) : ?>
-                        <li class="text-red-500 text-xs mt-2"><?= $errors['password'] ?></li>
+                        <li class="text-danger text-xs mt-2"><?= $errors['password'] ?></li>
                     <?php endif; ?>
 
                     <?php if (isset($errors['csrf_token'])) : ?>
-                        <li class="text-red-500 text-xs mt-2"><?= $errors['csrf_token'] ?></li>
+                        <li class="text-danger text-xs mt-2"><?= $errors['csrf_token'] ?></li>
                     <?php endif; ?>
                 </ul>
             </form>
