@@ -8,16 +8,18 @@ $form = LoginForm::validate($attributes = [
     'password' => $_POST['password']
 ]);
 
-$signedIn = (new Authenticator)->attempt(
+$auth_result = (new Authenticator)->attempt(
     $attributes['email'],
     $attributes['password']
 );
 
-if (!$signedIn) {
-    $form->error(
-        'email',
-        'No matching account found for that email address and password.'
-    )->throw();
+if ($auth_result !== true) {
+    $message = match ($auth_result) {
+        'not_admin' => 'This area is restricted to administrators only.',
+        'invalid_credentials' => 'No matching account found for that email address and password.'
+    };
+
+    $form->error('email', $message)->throw();
 }
 
 redirect('/users');
