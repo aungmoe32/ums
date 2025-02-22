@@ -45,7 +45,7 @@
                         </td>
                         <td class="p-4">
                             <div class="flex gap-2">
-                                <?php if (in_array('delete', $permissions['role'])) : ?>
+                                <?php if ($canDelete) : ?>
                                     <div x-data="{deleteModalIsOpen: false}">
                                         <button type="button" x-on:click="deleteModalIsOpen = true" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-red-500 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-red-400 dark:focus-visible:outline-red-400">delete</button>
 

@@ -3,8 +3,14 @@
 use Core\App;
 use Core\Database;
 use Core\Session;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
+$permissions = App::resolve(Authenticator::class)->permissions();
+
+if (!in_array('edit', $permissions['user'])) {
+    redirect('/users');
+}
 
 $user = $db->query('select * from users where id = :id', [
     'id' => $_POST['id']

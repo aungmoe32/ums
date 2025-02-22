@@ -2,8 +2,14 @@
 
 use Core\App;
 use Core\Database;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
+$permissions = App::resolve(Authenticator::class)->permissions();
+
+if (!in_array('delete', $permissions['user'])) {
+    redirect('/users');
+}
 
 $userId = $_POST['user_id'];
 

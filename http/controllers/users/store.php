@@ -3,8 +3,14 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
+$permissions = App::resolve(Authenticator::class)->permissions();
+
+if (!in_array('create', $permissions['user'])) {
+    redirect('/users');
+}
 
 // Validate the form inputs
 $errors = [];
