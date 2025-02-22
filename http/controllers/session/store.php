@@ -21,4 +21,4 @@ if ($auth_result !== true) {
     $form->error('email', $message)->throw();
 }
 
-redirect('/users');
+redirect('/');

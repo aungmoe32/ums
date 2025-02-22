@@ -13,6 +13,7 @@ $router->post('/users', 'users/store.php', ['csrf', 'auth']);
 $router->get('/users', 'users/index.php')->only('auth');
 $router->get('/users/edit', 'users/edit.php')->only('auth');
 $router->post('/users/update', 'users/update.php', ['csrf', 'auth']);
+$router->post('/users/delete', 'users/destroy.php', ['csrf', 'auth']);
 
 // $router->get('/register', 'registration/create.php')->only('guest');
 // $router->post('/register', 'registration/store.php')->only('guest');
