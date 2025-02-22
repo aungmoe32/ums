@@ -68,7 +68,7 @@ cd ums
 composer install
 ```
 
-3. Configure your database in `config.php`:
+3. Configure your MySQL database in `config.php`:
 
 ```php
 return [
@@ -81,13 +81,19 @@ return [
 ];
 ```
 
-4. Run the seeder to populate the database:
+4. Run the schema to create the database:
+
+```bash
+php database/run-schema.php
+```
+
+5. Run the seeder to populate the database:
 
 ```bash
 php database/seed.php
 ```
 
-5. Run the development server:
+6. Run the development server:
 
 ```bash
 php -S localhost:8000 -t public
