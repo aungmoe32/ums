@@ -19,7 +19,7 @@
         </div>
     </div>
 <?php endif; ?>
-<?php if (!in_array('create', $permissions['role'])) : ?>
+<?php if (!$canCreate) : ?>
     <div class="container flex flex-col items-center justify-center h-full">
         <h1 class="text-2xl font-semibold text-red-500">You do not have permission to create roles.</h1>
     </div>

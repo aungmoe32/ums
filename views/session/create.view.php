@@ -4,7 +4,7 @@
     <div class="flex min-h-full items-start justify-center py-12 px-4 sm:px-6 lg:px-8 bg-surface-dark">
         <div class="w-full max-w-md space-y-8">
             <div>
-                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-on-surface-dark">Admin Log In!</h2>
+                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-on-surface-dark">Log In!</h2>
             </div>
 
             <form class="mt-8 space-y-6" action="/session" method="POST">

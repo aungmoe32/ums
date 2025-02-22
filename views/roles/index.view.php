@@ -45,10 +45,6 @@
                         </td>
                         <td class="p-4">
                             <div class="flex gap-2">
-                                <?php if (in_array('edit', $permissions['role'])) : ?>
-                                    <a href="/roles/edit?id=<?= htmlspecialchars($role['role_id']) ?>" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-primary transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-primary-dark dark:focus-visible:outline-primary-dark">edit</a>
-                                <?php endif; ?>
-
                                 <?php if (in_array('delete', $permissions['role'])) : ?>
                                     <div x-data="{deleteModalIsOpen: false}">
                                         <button type="button" x-on:click="deleteModalIsOpen = true" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-red-500 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-red-400 dark:focus-visible:outline-red-400">delete</button>

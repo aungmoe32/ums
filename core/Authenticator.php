@@ -45,19 +45,55 @@ class Authenticator
         return $_SESSION['user'];
     }
 
+    // Get permissions for the current user
     public function permissions()
     {
-        $user = App::resolve(Database::class)
+        return $this->getPermissions($this->user()['role_id']);
+    }
+
+    // Get permissions for a specific role
+    public function getPermissions($role_id)
+    {
+        $permissions = App::resolve(Database::class)
             ->query('select permissions.name as permission_name, features.name as feature_name from permissions left join role_permissions on permissions.id = role_permissions.permission_id left join features on permissions.feature_id = features.id where role_permissions.role_id = :role_id', [
-                'role_id' => $this->user()['role_id']
+                'role_id' => $role_id
             ])->get();
 
-        $permissions = [];
+        $pers = [];
 
-        foreach ($user as $permission) {
-            $permissions[$permission['feature_name']][] = $permission['permission_name'];
+        foreach ($permissions as $permission) {
+            $pers[$permission['feature_name']][] = $permission['permission_name'];
         }
 
-        return $permissions;
+        return $pers;
+    }
+    // Get all permissions
+    public function getAllPermissions()
+    {
+        $permissions = App::resolve(Database::class)
+            ->query('select permissions.name as permission_name, features.name as feature_name from permissions left join features on permissions.feature_id = features.id')->get();
+        $pers = [];
+
+        foreach ($permissions as $permission) {
+            $pers[$permission['feature_name']][] = $permission['permission_name'];
+        }
+
+        return $pers;
+    }
+    public function getFeatures()
+    {
+        $datas = App::resolve(Database::class)
+            ->query('
+    SELECT features.id AS feature_id , features.name AS feature_name, permissions.name AS permission_name, permissions.id AS permission_id
+    FROM features
+    LEFT JOIN permissions ON features.id = permissions.feature_id
+')->get();
+        $features = [];
+
+        foreach ($datas as $data) {
+            $features[$data['feature_name']][] = $data;
+        }
+
+        return $features;
     }
 }
