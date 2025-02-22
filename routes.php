@@ -21,3 +21,5 @@ $router->post('/users/delete', 'users/destroy.php', ['csrf', 'auth']);
 $router->get('/login', 'session/create.php')->only('guest');
 $router->post('/session', 'session/store.php', ['csrf', 'guest']);
 $router->delete('/session', 'session/destroy.php')->only('auth');
+
+$router->get('/profile', 'profile/show.php')->only('auth');

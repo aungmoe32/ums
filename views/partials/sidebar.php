@@ -51,6 +51,14 @@
                     </li>
                 </ul>
             </div>
+            <!-- profile  -->
+            <a href="/profile" class="flex font-medium items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 shrink-0" aria-hidden="true">
+                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-2-8a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm-1 4a4 4 0 0 1 8 0H9z" />
+                </svg>
+                Profile
+            </a>
+
 
 
 

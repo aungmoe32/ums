@@ -28,7 +28,9 @@ class Authenticator
     {
         $_SESSION['user'] = [
             'email' => $user['email'],
+            'name' => $user['name'],
             'role_id' => $user['role_id'],
+            'role_name' => $user['role_name'],
             'user_id' => $user['id']
         ];
 
