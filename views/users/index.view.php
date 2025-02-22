@@ -48,10 +48,10 @@
                             </a>
                         </td>
                         <td class="p-4 flex gap-2">
-                            <?php if (in_array('edit', $permissions['user'])) : ?>
+                            <?php if ($canEdit) : ?>
                                 <a href="/users/edit?id=<?= htmlspecialchars($user['id']) ?>" class="text-blue-500">Edit</a>
                             <?php endif; ?>
-                            <?php if (in_array('delete', $permissions['user'])) : ?>
+                            <?php if ($canDelete) : ?>
                                 <form action="/users/delete" method="POST">
                                     <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['id']) ?>">
                                     <?= csrf_field() ?>

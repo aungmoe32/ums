@@ -99,6 +99,11 @@ php database/seed.php
 php -S localhost:8000 -t public
 ```
 
+## Test Users
+
+- Admin: admin@example.com / password
+- User: user@example.com / password
+
 ## Features in Detail
 
 ### Authentication
