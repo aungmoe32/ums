@@ -85,4 +85,4 @@ body {
 
 </head>
 
-<body>
+<body class="h-screen">

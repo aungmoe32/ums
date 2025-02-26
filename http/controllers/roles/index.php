@@ -51,10 +51,14 @@ $roles = array_map(function ($roleId, $roleData) {
 
 $permissions = App::resolve(Authenticator::class)->permissions();
 $canDelete = in_array('delete', $permissions['role']);
-// dd($permissions);
+$canEdit = in_array('edit', $permissions['role']);
+$canView = in_array('view', $permissions['role']);
+
 view("roles/index.view.php", [
     'heading' => 'Roles',
     'roles' => $roles,
     'permissions' => $permissions,
-    'canDelete' => $canDelete
+    'canDelete' => $canDelete,
+    'canEdit' => $canEdit,
+    'canView' => $canView
 ]);

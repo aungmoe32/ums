@@ -7,7 +7,9 @@
 
     <nav x-cloak class="fixed left-0 z-20 flex h-svh w-60 shrink-0 flex-col border-r border-neutral-300 bg-neutral-50 p-4 transition-transform duration-300 md:w-64 md:translate-x-0 md:relative dark:border-neutral-700 dark:bg-neutral-900" x-bind:class="showSidebar ? 'translate-x-0' : '-translate-x-60'" aria-label="sidebar navigation">
 
-        <h1 class="text-4xl font-bold mb-4 text-white !font-poppins">UMS</h1>
+        <a href="/">
+            <h1 class="text-4xl font-bold mb-4 text-white !font-poppins">UMS</h1>
+        </a>
         <!-- sidebar links  -->
         <div class="flex flex-col gap-2 overflow-y-auto pb-6">
 

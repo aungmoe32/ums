@@ -1,9 +1,11 @@
 <?php require('partials/head.php') ?>
 <nav class="bg-gray-800 p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <div class="text-white text-2xl font-bold">
-            UMS
-        </div>
+        <a href="/">
+            <div class="text-white text-2xl font-bold">
+                UMS
+            </div>
+        </a>
         <div x-data="{ isOpen: false, openedWithKeyboard: false }" class="relative w-fit" x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false">
             <!-- Toggle Button -->
             <button type="button" x-on:click="isOpen = ! isOpen" class="inline-flex items-center gap-2 whitespace-nowrap rounded-xl border border-neutral-300 bg-neutral-200 px-4 py-2 text-sm font-medium tracking-wide transition hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800 dark:border-neutral-700 dark:bg-neutral-900 dark:focus-visible:outline-neutral-300" aria-haspopup="true" x-on:keydown.space.prevent="openedWithKeyboard = true" x-on:keydown.enter.prevent="openedWithKeyboard = true" x-on:keydown.down.prevent="openedWithKeyboard = true" x-bind:class="isOpen || openedWithKeyboard ? 'text-black dark:text-neutral-100' : 'text-neutral-800 dark:text-neutral-300'" x-bind:aria-expanded="isOpen || openedWithKeyboard">
