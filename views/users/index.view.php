@@ -19,6 +19,15 @@
         </div>
     </div>
 <?php endif; ?>
+
+<?php if (!$canView) : ?>
+    <div class="container flex flex-col items-center justify-center h-full">
+        <h1 class="text-2xl font-semibold text-red-500">You do not have permission to view users.</h1>
+    </div>
+    <?php require BASE_PATH . 'views/partials/sidebar-footer.php' ?>
+    <?php require BASE_PATH . 'views/partials/footer.php' ?>
+    <?php exit; ?>
+<?php endif; ?>
 <div class="container flex flex-col">
 
     <div class="flex justify-between items-center">

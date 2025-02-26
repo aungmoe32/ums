@@ -13,6 +13,7 @@ $users = $db->query('
 
 $permissions = App::resolve(Authenticator::class)->permissions();
 
+$canView = in_array('view', $permissions['user']);
 $canEdit = in_array('edit', $permissions['user']);
 $canDelete = in_array('delete', $permissions['user']);
 
@@ -20,6 +21,7 @@ view("users/index.view.php", [
     'heading' => 'Users',
     'users' => $users,
     'permissions' => $permissions,
+    'canView' => $canView,
     'canEdit' => $canEdit,
     'canDelete' => $canDelete
 ]);

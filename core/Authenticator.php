@@ -50,9 +50,15 @@ class Authenticator
     // Get permissions for the current user
     public function permissions()
     {
-        return $this->getPermissions($this->user()['role_id']);
+        $permissions = $this->getPermissions($this->user()['role_id']);
+        if (!isset($permissions['user'])) {
+            $permissions['user'] = [];
+        }
+        if (!isset($permissions['role'])) {
+            $permissions['role'] = [];
+        }
+        return $permissions;
     }
-
     // Get permissions for a specific role
     public function getPermissions($role_id)
     {

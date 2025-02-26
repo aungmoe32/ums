@@ -49,9 +49,9 @@ $roles = array_map(function ($roleId, $roleData) {
     ];
 }, array_keys($formattedRoles), $formattedRoles);
 
-$permissions = App::resolve(Authenticator::class)->getAllPermissions();
+$permissions = App::resolve(Authenticator::class)->permissions();
 $canDelete = in_array('delete', $permissions['role']);
-
+// dd($permissions);
 view("roles/index.view.php", [
     'heading' => 'Roles',
     'roles' => $roles,

@@ -20,6 +20,12 @@
     </div>
 <?php endif; ?>
 
+<?php if (!$canView) : ?>
+    <div class="container flex flex-col items-center justify-center h-full">
+        <h1 class="text-2xl font-semibold text-red-500">You do not have permission to view roles.</h1>
+    </div>
+<?php endif; ?>
+
 <div class="container flex flex-col">
     <div class="flex justify-between items-center">
         <h1 class="h10"><?= $heading ?></h1>
@@ -61,7 +67,7 @@
                                                     </button>
                                                 </div>
                                                 <!-- Dialog Body -->
-                                                <div class="px-4 py-8">
+                                                <div class="px-4 pb-8">
                                                     <p class="text-sm text-on-surface dark:text-on-surface-dark">Are you sure you want to delete the role "<?= htmlspecialchars($role['role_name']) ?>"? This action cannot be undone.</p>
                                                     <div class="flex justify-end gap-2 mt-4">
                                                         <button type="button" x-on:click="deleteModalIsOpen = false" class="cursor-pointer bg-transparent rounded-radius px-4 py-2 text-sm font-medium tracking-wide text-neutral-500 transition hover:opacity-75 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:text-neutral-400 dark:focus-visible:outline-neutral-400">Cancel</button>
@@ -92,7 +98,7 @@
                                                 </button>
                                             </div>
                                             <!-- Dialog Body -->
-                                            <div class="px-4 py-8">
+                                            <div class="px-4 pb-8">
                                                 <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
                                                     <thead class="border-b border-outline bg-surface-alt text-sm text-on-surface-strong dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark-strong">
                                                         <tr>

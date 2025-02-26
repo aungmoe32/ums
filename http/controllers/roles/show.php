@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Authenticator;
 
 $roleId = $_GET['id'] ?? null;
 
@@ -44,9 +45,10 @@ foreach ($roleData as $item) {
         }
     }
 }
-// dd($role);
+$permissions = App::resolve(Authenticator::class)->permissions();
 
 view("roles/show.view.php", [
     'heading' => 'Role Details',
-    'role' => $role
+    'role' => $role,
+    'permissions' => $permissions
 ]);
