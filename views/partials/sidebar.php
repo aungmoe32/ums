@@ -11,7 +11,7 @@
             <h1 class="text-4xl font-bold mb-4 text-white !font-poppins">UMS</h1>
         </a>
         <!-- sidebar links  -->
-        <div class="flex flex-col gap-2 overflow-y-auto pb-6">
+        <div class="flex flex-col gap-2 overflow-y-auto h-full">
 
             <div x-data="{ isExpanded: true }" class="flex flex-col">
                 <button type="button" x-on:click="isExpanded = ! isExpanded" id="user-management-btn" aria-controls="user-management" x-bind:aria-expanded="isExpanded ? 'true' : 'false'" class="flex items-center justify-between rounded-radius gap-2 px-2 py-1.5 text-sm font-medium underline-offset-2 focus:outline-hidden focus-visible:underline" x-bind:class="isExpanded ? 'text-on-surface-strong bg-primary/10 dark:text-on-surface-dark-strong dark:bg-primary-dark/10' :  'text-on-surface hover:bg-primary/5 hover:text-on-surface-strong dark:text-on-surface-dark dark:hover:text-on-surface-dark-strong dark:hover:bg-primary-dark/5'">
@@ -61,6 +61,8 @@
                     <?php endif; ?>
                 </ul>
             </div>
+
+            <div class="flex-1"></div>
             <!-- profile  -->
             <a href="/profile" class="flex font-medium items-center rounded-radius gap-2 px-2 py-1.5 text-sm text-on-surface underline-offset-2 hover:bg-primary/5 hover:text-on-surface-strong focus:outline-hidden focus-visible:underline dark:text-on-surface-dark dark:hover:bg-primary-dark/5 dark:hover:text-on-surface-dark-strong">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="profile" class="text-blue-500" width="15" height="15">
@@ -74,10 +76,6 @@
                 </svg>
                 Profile
             </a>
-
-
-
-
 
             <div href="#" class="flex items-center justify-start rounded-sm gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0" aria-hidden="true">
